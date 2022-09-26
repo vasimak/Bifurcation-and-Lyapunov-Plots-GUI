@@ -1,5 +1,5 @@
 # Bifurcation-and-Lyapunov-Plots-GUI
-This gui  developed by the code used in my bachelor thesis . You can choose between plenty of dynamical maps , and then you can plot with the parameters you given the Bifurcation Diagram and the Lyapunov Exponent
+This gui  developed by the code used in my bachelor thesis . You can choose between plenty of dynamical maps , and then you can plot with the parameters you given the Bifurcation Diagram and the Lyapunov Exponent.
 
 When you open the executable file you will see the maps you can choose and two buttons.
 
