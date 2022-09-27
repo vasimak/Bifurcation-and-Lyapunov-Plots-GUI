@@ -21,7 +21,8 @@ import matplotlib.pyplot as plt
 from matplotlib.widgets import RectangleSelector
 import matplotlib.figure as figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
-
+import multiprocessing 
+from multiprocessing import Pool
 matplotlib.use('TkAgg')
 
 sg.theme('Black')
@@ -393,12 +394,23 @@ def extralogistic_window():
         q0 = float(values[1])
         bif1 = partial(bif, q0, x0)
         le1 = partial(le, q0, x0)
-
+        
         if event == 'Bifurcation Plot':
-
+            start_time = time.time()       
             X = []
             Y = []
             # create and configure the process pool
+            # if __name__ == '__main__':
+            #     with Pool(4) as p:
+            #         try:
+            #             for i,ch in enumerate(p.map(bif1,r,chunksize=2500)) :
+            #                 x1 = np.ones(len(ch))*r[i]
+            #                 X.append(x1)
+            #                 Y.append(ch)
+            #         except ValueError:
+            #             sg.popup("Try again with different numbers. It raises math error")
+            #             continue
+
             try:
                 for i, ch in enumerate(map(bif1, r)):
                     x1 = np.ones(len(ch))*r[i]
@@ -422,6 +434,7 @@ def extralogistic_window():
                                    interactive=True)
             draw_figure_w_toolbar(
                 window['fig_cv'].TKCanvas, fig, window['controls_cv'].TKCanvas)
+            print("--- %s seconds ---" % (time.time() - start_time))
             # window.FindElement().Update('')
             window.refresh()
             continue
