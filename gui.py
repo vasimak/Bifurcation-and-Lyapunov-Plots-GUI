@@ -88,7 +88,7 @@ def le(q0, x0, r):
     q = q0
     for i in range(1, N):
         x = r * (1 + x) * (1 + x) * (2 - x) + q
-        # derivative of the equation you calculate
+      
         lyapunov += np.log(np.abs(-3*r*(x**2-1)))
         l1 = lyapunov/N
     return (l1)
@@ -112,7 +112,7 @@ def log_le(x0, r):
     x = x0
     for i in range(1, N):
         x = x = r * x * (1 - x)
-        # derivative of the equation you calculate
+      
         lyapunov += np.log(np.abs(r - 2*r*x))
         l1 = lyapunov/N
     return (l1)
@@ -136,7 +136,7 @@ def cheb_le(x0, r):
     x = x0
     for i in range(1, N):
         x = math.cos(r*math.acos(x))
-        # derivative of the equation you calculate
+      
         if math.sqrt(1-x**2)==0:
             r*math.sin(r*math.acos(x)) ==0
         else:
@@ -164,7 +164,7 @@ def sine_sinh_le(x0, r):
     x = x0
     for i in range(1, N):
         x = r*math.sin(math.pi*math.sinh(math.pi*math.sin(math.pi*x)))
-        # derivative of the equation you calculate
+      
         lyapunov += np.log(np.abs(math.pi**3*r*math.cos(math.pi*x)*math.cosh(
             math.pi*math.sin(math.pi*x))*math.cos(math.pi*math.sinh(math.sin(math.pi*x)))))
         l1 = lyapunov/N
@@ -189,7 +189,7 @@ def renyi_le(x0, r):
     x = x0
     for i in range(1, N):
         x = np.mod(r*x, 1)
-        # derivative of the equation you calculate
+      
         lyapunov += np.log(np.abs(np.mod(r, 1)))
         l1 = lyapunov/N
     return (l1)
@@ -213,7 +213,7 @@ def sine_le(x0, r):
     x = x0
     for i in range(1, N):
         x = r*math.sin(math.pi*x)
-        # derivative of the equation you calculate
+      
         lyapunov += np.log(np.abs(math.pi*r*math.cos(math.pi*x)))
         l1 = lyapunov/N
     return (l1)
@@ -237,7 +237,7 @@ def cubic_logistic_le(x0, r):
     x = x0
     for i in range(1, N):
         x = r*x*(1-x)*(2+x)
-        # derivative of the equation you calculate
+      
         lyapunov += np.log(np.abs(-r*(3*x**2+2*x-2)))
         l1 = lyapunov/N
     return (l1)
@@ -261,7 +261,7 @@ def cubic_le(x0, r):
     x = x0
     for i in range(1, N):
         x = r*x*(1-x**2)
-        # derivative of the equation you calculate
+      
         lyapunov += np.log(np.abs(r-3*r*x**2))
         l1 = lyapunov/N
     return (l1)
@@ -292,7 +292,7 @@ def extracheb_le(q0, x0, r):
         if math.sqrt(1-(q**2*x**2))==0:
             q*r**q*math.sin(r**q * math.acos(q*x))==0
         else:
-            # derivative of the equation you calculate
+          
             lyapunov += np.log(np.abs((q*r**q*math.sin(r**q *
                             math.acos(q*x)))/(math.sqrt(1-(q**2*x**2)))))
             l1 = lyapunov/N
@@ -319,7 +319,7 @@ def extrasine_sinh_le(q0, x0, r):
     q = q0
     for i in range(1, N):
         x = r * math.sin(r * math.sinh(q * math.sin(2 * x)))
-        # derivative of the equation you calculate
+      
         lyapunov += np.log(np.abs(2*q*r**2*math.cos(2*x)
                            * math.cosh(q*math.sin(2*x))))
         l1 = lyapunov/N
@@ -399,18 +399,6 @@ def extralogistic_window():
             start_time = time.time()       
             X = []
             Y = []
-            # create and configure the process pool
-            # if __name__ == '__main__':
-            #     with Pool(4) as p:
-            #         try:
-            #             for i,ch in enumerate(p.map(bif1,r,chunksize=2500)) :
-            #                 x1 = np.ones(len(ch))*r[i]
-            #                 X.append(x1)
-            #                 Y.append(ch)
-            #         except ValueError:
-            #             sg.popup("Try again with different numbers. It raises math error")
-            #             continue
-
             try:
                 for i, ch in enumerate(map(bif1, r)):
                     x1 = np.ones(len(ch))*r[i]
